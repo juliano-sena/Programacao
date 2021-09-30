@@ -366,9 +366,9 @@ R2(config-roteador) #exit
 R2(config) #exit
 ```
 ## **TUNNEL**
-```
-!RA 
 
+**Configurando TUNNEL em RA**
+```
 RA>en
 RA#conf t 
 RA(config) #interface tunnel 0 
@@ -380,9 +380,10 @@ RA(config-if) #no shut
 RA(config-if) #exit 
 
 RA(config) #ip route 192.168.2.0 255.255.255.0 10.10.10.2
+```
 
-
-    RB 
+**Configurando TUNNEL em RB**
+```
 RB>en
 RB#conf t 
 RB(config) #interface tunnel 0 
@@ -394,7 +395,8 @@ RB(config-if) #no shut
 RB(config-if) #exit 
 RB(config) #
 ```
-**PPP**
+## **PPP**
+**Configurando PPP em R1**
 ```
 R1
 
@@ -415,8 +417,9 @@ R1(config-if) #ppp authentication pap
 R1(config-if) #ppp pap sent-username R1 password cisco
 R1(config-if) #exit
 
-
-	R3
+```
+**Configurando PPP em R3**
+```
 R3>en
 R3#conf t
 	!1b - Passo - Entrar na interface e ativar encapsulamento PPP
@@ -455,25 +458,25 @@ R3(config-if) #interface serial0/1/0
 R3(config-if) #ppp authentication chap
 R3(config-if) #exit
 
-
-	R2
+```
+**Configurando PPP em R2**
+```
 R2>en
 R2#conf t
-	!1c Mudar encapsulamento da interface S0/0/1
+ 1c Mudar encapsulamento da interface S0/0/1
 R2(config) #interface s0/0/1
 R2(config-if) #encapsulation ppp
 R2(config-if) #exit
-
-	!2d Criar usuário de conexão para o R3
+ 2d Criar usuário de conexão para o R3
 R2(config) #username R3 secret class
-
-	!3c Conectar com usuario R2 no metodo PAP
+ 3c Conectar com usuario R2 no metodo PAP
 R2(config) #interface s0/0/1
 R2(config-if) #ppp authentication pap
 R2(config-if) #ppp pap sent-username R2 password cisco
 R2(config-if) #exit
-
-	ISP
+```
+**Configurando PPP em ISP**
+```
 ISP>en
 ISP#conf t
 ISP(config) #interface s0/0/0
